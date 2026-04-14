@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Capacitación — Dani · Pulpo Web</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
+:root {
+  --navy:#0F172A; --teal:#0D9488; --teal-l:#CCFBF1; --teal-d:#0F766E;
+  --slate:#64748B; --light:#F0FDFA; --gold:#F59E0B; --gold-l:#FEF3C7;
+  --red:#EF4444; --white:#ffffff; --border:#E2E8F0;
+  --violet:#7C3AED; --violet-l:#EDE9FE;
+  --c1:#64748B; --c2:#0D9488; --c3:#7C3AED; --c4:#0F172A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#F8FAFC;color:var(--navy);line-height:1.6}
+
+/* HERO */
+.hero{background:var(--navy);padding:60px 24px 50px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;background:radial-gradient(circle,#1E3A5F 0%,transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-40px;left:-40px;width:200px;height:200px;background:radial-gradient(circle,#0D9488 0%,transparent 70%);border-radius:50%;opacity:.3}
+.hero-inner{max-width:880px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{display:inline-block;background:var(--teal);color:white;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(30px,6vw,54px);font-weight:800;color:white;line-height:1.1;margin-bottom:16px}
+.hero h1 span{color:var(--teal)}
+.hero p{color:#94A3B8;font-size:15px;max-width:560px;margin-bottom:28px}
+.hero-meta{display:flex;gap:20px;flex-wrap:wrap}
+.hero-meta span{color:#64748B;font-size:13px;display:flex;align-items:center;gap:6px}
+.hero-meta span::before{content:'·';color:var(--teal);font-size:18px}
+
+/* NAV */
+.nav-wrap{background:white;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,.06)}
+.nav{max-width:880px;margin:0 auto;display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;background:none;border:none;padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:500;color:var(--slate);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.nav-btn:hover{color:var(--teal)}
+.nav-btn.active{color:var(--teal);border-bottom-color:var(--teal);font-weight:600}
+
+/* MAIN */
+.main{max-width:880px;margin:0 auto;padding:36px 24px 80px}
+.section{display:none}
+.section.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION HEADER */
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.section-num{background:var(--navy);color:var(--teal);font-family:'Syne',sans-serif;font-size:12px;font-weight:700;padding:5px 11px;border-radius:8px;letter-spacing:1px}
+.section-num.violet{background:var(--violet);color:white}
+.section-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--navy)}
+
+/* PROGRESS */
+.progress-bar-wrap{background:var(--border);height:3px;border-radius:2px;margin-bottom:36px;overflow:hidden}
+.progress-bar{height:100%;background:var(--teal);border-radius:2px;transition:width .4s ease}
+
+/* CARDS */
+.card{background:white;border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:18px}
+.card-teal{background:var(--light);border-color:var(--teal)}
+.card-warn{background:var(--gold-l);border-color:var(--gold)}
+.card-violet{background:var(--violet-l);border-color:var(--violet)}
+.card-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--teal-d);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.card-title.violet{color:var(--violet)}
+.card p{color:#334155;font-size:14px;margin-bottom:6px}
+.card p:last-child{margin-bottom:0}
+
+/* INFO BOX */
+.info-box{background:var(--teal-l);border-left:4px solid var(--teal);border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:18px}
+.info-box.violet{background:var(--violet-l);border-left-color:var(--violet)}
+.info-box.gold{background:var(--gold-l);border-left-color:var(--gold)}
+.info-box .box-title{font-weight:700;color:var(--teal-d);margin-bottom:7px;font-size:13.5px}
+.info-box.violet .box-title{color:var(--violet)}
+.info-box.gold .box-title{color:#92400E}
+.info-box ul{list-style:none;padding:0}
+.info-box ul li{font-size:13.5px;color:#0F5132;padding:3px 0 3px 18px;position:relative}
+.info-box.violet ul li{color:#4C1D95}
+.info-box.gold ul li{color:#78350F}
+.info-box ul li::before{content:'▸';position:absolute;left:0;color:var(--teal)}
+.info-box.violet ul li::before{color:var(--violet)}
+.info-box.gold ul li::before{color:var(--gold)}
+
+/* MSG BOX */
+.msg-box{background:#ECFDF5;border:1.5px solid var(--teal);border-left-width:5px;border-radius:0 12px 12px 0;padding:16px 48px 16px 18px;margin-bottom:14px;font-family:'Courier New',monospace;font-size:12.5px;color:#064E3B;line-height:1.7;white-space:pre-wrap;position:relative}
+.copy-btn{position:absolute;top:10px;right:10px;background:var(--teal);color:white;border:none;border-radius:6px;padding:4px 10px;font-size:11px;font-family:'DM Sans',sans-serif;cursor:pointer;opacity:.8;transition:opacity .2s}
+.copy-btn:hover{opacity:1}
+.copy-btn.copied{background:#059669}
+
+/* TABLES */
+.tbl{width:100%;border-collapse:collapse;margin-bottom:18px;font-size:13px}
+.tbl thead th{background:var(--navy);color:white;padding:10px 12px;text-align:left;font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:.5px}
+.tbl tbody tr:nth-child(even){background:#F8FAFC}
+.tbl tbody td{padding:9px 12px;border-bottom:1px solid var(--border);color:#334155}
+.tbl tbody tr:hover{background:var(--teal-l)}
+.tbl .yes{color:var(--teal);font-weight:700}
+.tbl .no{color:#CBD5E1}
+.tbl .opt{color:var(--gold);font-size:11px}
+
+/* PLAN CARDS */
+.plans-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:28px}
+.plan-card{border-radius:16px;overflow:hidden;border:2px solid var(--border);transition:transform .2s,box-shadow .2s;cursor:default}
+.plan-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
+.plan-card.popular{border-width:3px}
+.plan-header{padding:18px 20px 14px;color:white;position:relative}
+.plan-badge{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.2);color:white;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;font-family:'Syne',sans-serif;letter-spacing:.5px}
+.plan-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;margin-bottom:4px}
+.plan-sub{font-size:12px;opacity:.8}
+.plan-price{padding:14px 20px;background:var(--light)}
+.plan-price .setup{font-size:12px;color:var(--slate);margin-bottom:3px}
+.plan-price .monthly{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--navy)}
+.plan-price .monthly span{font-size:13px;font-weight:400;color:var(--slate)}
+.plan-for{padding:10px 20px;background:white;font-size:12px;color:var(--slate);font-style:italic;border-bottom:1px solid var(--border)}
+.plan-features{padding:14px 20px;background:white}
+.plan-features ul{list-style:none;padding:0}
+.plan-features ul li{font-size:13px;padding:5px 0;border-bottom:1px solid #F1F5F9;color:#334155;padding-left:20px;position:relative}
+.plan-features ul li:last-child{border-bottom:none}
+.plan-features ul li::before{content:'✓';position:absolute;left:0;font-weight:700}
+.p1 .plan-header{background:#16A34A} .p1 .plan-features ul li::before{color:var(--c1)}
+.p2 .plan-header{background:var(--c2)} .p2 .plan-features ul li::before{color:var(--c2)} .p2{border-color:var(--c2)}
+.p3 .plan-header{background:var(--c3)} .p3 .plan-features ul li::before{color:var(--c3)}
+.p4 .plan-header{background:var(--c4)} .p4 .plan-features ul li::before{color:var(--c4)}
+
+/* STRATEGY BOX */
+.strategy-box{background:var(--violet-l);border:2px solid var(--violet);border-radius:14px;padding:20px 22px;margin-bottom:22px}
+.strategy-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--violet);margin-bottom:12px}
+.strategy-items{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.strategy-item{background:white;border-radius:10px;padding:12px 14px;border:1px solid #DDD6FE}
+.strategy-item .s-label{font-size:10px;font-weight:700;color:var(--violet);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-family:'Syne',sans-serif}
+.strategy-item p{font-size:12.5px;color:#4C1D95}
+
+/* BULLETS */
+.blist{list-style:none;padding:0;margin-bottom:18px}
+.blist li{padding:7px 0 7px 22px;position:relative;font-size:14px;color:#334155;border-bottom:1px solid #F1F5F9}
+.blist li::before{content:'▸';position:absolute;left:0;color:var(--teal);font-size:12px}
+.blist li:last-child{border-bottom:none}
+
+/* STEPS */
+.steps{margin-bottom:18px}
+.step{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start}
+.step-num{flex-shrink:0;width:32px;height:32px;background:var(--teal);color:white;font-family:'Syne',sans-serif;font-weight:800;font-size:13px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.step-content h4{font-weight:700;font-size:14px;color:var(--navy);margin-bottom:2px}
+.step-content p{font-size:13px;color:#475569}
+
+/* QA */
+.qa-item{margin-bottom:10px}
+.qa-question{width:100%;text-align:left;background:white;border:1px solid var(--border);border-radius:10px;padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:all .2s}
+.qa-question:hover{border-color:var(--teal);background:var(--light)}
+.qa-question.open{border-color:var(--teal);background:var(--teal-l);border-radius:10px 10px 0 0}
+.qa-arrow{font-size:11px;transition:transform .2s}
+.qa-question.open .qa-arrow{transform:rotate(90deg)}
+.qa-answer{display:none;border:1px solid var(--teal);border-top:none;border-radius:0 0 10px 10px;overflow:hidden}
+.qa-answer.open{display:block}
+
+/* ERROR */
+.error-item{background:#FEF2F2;border-left:4px solid var(--red);border-radius:0 10px 10px 0;padding:13px 16px;margin-bottom:12px}
+.error-item .err-title{font-weight:700;color:#991B1B;font-size:13.5px;margin-bottom:3px}
+.error-item p{font-size:13px;color:#7F1D1D}
+
+/* ROLE GRID */
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.role-col{background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.role-col-header{background:var(--navy);color:white;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;padding:9px 14px}
+.role-col-header.teal{background:var(--teal)}
+.role-col ul{list-style:none;padding:10px 14px}
+.role-col ul li{font-size:13px;padding:4px 0;border-bottom:1px solid #F1F5F9;color:#334155}
+.role-col ul li:last-child{border-bottom:none}
+
+/* TAGS */
+.tag{display:inline-block;background:var(--teal-l);color:var(--teal-d);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;margin:3px 3px 3px 0}
+.tag.violet{background:var(--violet-l);color:var(--violet)}
+
+/* FOOT NAV */
+.foot-nav{display:flex;justify-content:space-between;margin-top:36px;padding-top:22px;border-top:1px solid var(--border)}
+.foot-btn{background:var(--navy);color:white;border:none;border-radius:8px;padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:background .2s}
+.foot-btn:hover{background:var(--teal-d)}
+.foot-btn.teal{background:var(--teal)}
+.foot-btn:disabled{opacity:.3;cursor:default}
+.foot-btn.violet{background:var(--violet)}
+
+/* PRICING STRATEGY LABEL */
+.ps-label{display:inline-flex;align-items:center;gap:6px;background:var(--violet-l);color:var(--violet);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:4px;font-family:'Syne',sans-serif}
+
+@media(max-width:640px){
+  .plans-grid{grid-template-columns:1fr}
+  .strategy-items{grid-template-columns:1fr}
+  .role-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Pulpo Web · Avanzadodora Web Freelance</div>
+    <h1>Guía de<br><span>Capacitación</span><br>& Planes</h1>
+    <p>Todo lo que necesitas para representar Pulpo Web en España — incluyendo los 4 planes, estrategia de precios y mensajes listos.</p>
+    <div class="hero-meta">
+      <span>Para: Daniel Toro</span><span>9 módulos</span><span>4 planes</span><span>Abril 2026</span>
+    </div>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <div class="nav">
+    <button class="nav-btn active" onclick="goTo(0)">01 Negocio</button>
+    <button class="nav-btn" onclick="goTo(1)">02 Tu rol</button>
+    <button class="nav-btn" onclick="goTo(2)">03 Los 4 Planes ⭐</button>
+    <button class="nav-btn" onclick="goTo(3)">04 Prospectos</button>
+    <button class="nav-btn" onclick="goTo(4)">05 Contacto</button>
+    <button class="nav-btn" onclick="goTo(5)">06 Respuestas</button>
+    <button class="nav-btn" onclick="goTo(6)">07 Al cerrar</button>
+    <button class="nav-btn" onclick="goTo(7)">08 Mensajes</button>
+    <button class="nav-btn" onclick="goTo(8)">09 Errores</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="progress-bar-wrap"><div class="progress-bar" id="progress" style="width:11.1%"></div></div>
+
+  <!-- 01 NEGOCIO -->
+  <div class="section active" id="s0">
+    <div class="section-header"><div class="section-num">01</div><div class="section-title">El modelo de negocio</div></div>
+    <div class="card card-teal">
+      <div class="card-title">🌐 ¿Qué es Pulpo Web?</div>
+      <p>Pulpo Web es una <strong>aceleradora web freelance</strong> que diseña y publica páginas web profesionales para pequeños negocios. El diseño es <strong>completamente gratis</strong>. El cliente paga hospedaje, dominio y — si quiere crecer — automatización, bots y mantenciones.</p>
+    </div>
+    <div class="info-box">
+      <div class="box-title">¿Por qué gratis?</div>
+      <ul>
+        <li>Genera confianza instantánea — baja toda resistencia inicial</li>
+        <li>El cliente ve su página terminada antes de pagar nada</li>
+        <li>Ganamos con hospedaje, SEO, automatizaciones y mantenciones</li>
+        <li>Campaña curada: no ofrecemos a todo el mundo, solo a elegidos</li>
+      </ul>
+    </div>
+    <div class="card-title" style="padding:4px 0 10px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--teal-d)">💰 Cómo ganamos</div>
+    <table class="tbl">
+      <thead><tr><th>Servicio</th><th>Precio (€)</th><th>Cuándo</th></tr></thead>
+      <tbody>
+        <tr><td>Diseño + publicación</td><td class="yes">GRATIS</td><td>—</td></tr>
+        <tr><td>Dominio (anual)</td><td>~12–15 €</td><td>Al cerrar</td></tr>
+        <tr><td>Hospedaje (anual)</td><td>~100–120 €</td><td>Al cerrar</td></tr>
+        <tr><td>SEO básico</td><td>~25–30 € (único)</td><td>Opcional</td></tr>
+        <tr><td>Mantención mensual</td><td>15–49 €/mes</td><td>Recurrente</td></tr>
+        <tr><td>Automatizaciones</td><td>200–400 € setup + plan</td><td>Plan Avanzado+</td></tr>
+        <tr><td>Agente IA / Chatbot</td><td>incluido en Plan Total</td><td>Plan Total</td></tr>
+      </tbody>
+    </table>
+    <div class="foot-nav"><button class="foot-btn" disabled>← Anterior</button><button class="foot-btn teal" onclick="goTo(1)">Siguiente →</button></div>
+  </div>
+
+  <!-- 02 ROL -->
+  <div class="section" id="s1">
+    <div class="section-header"><div class="section-num">02</div><div class="section-title">Tu rol como representante</div></div>
+    <div class="card"><p>Tu trabajo es ser la cara de Pulpo Web en España. <strong>No necesitas saber programar.</strong> Tu valor está en el contacto humano, la confianza local y el seguimiento.</p></div>
+    <div class="role-grid">
+      <div class="role-col"><div class="role-col-header teal">✅ TU RESPONSABILIDAD</div><ul><li>Identificar prospectos</li><li>Primer contacto (WA / DM / Llamada)</li><li>Presentar la propuesta</li><li>Hacer seguimiento</li><li>Cerrar el trato</li><li>Cobrar y transferir</li></ul></div>
+      <div class="role-col"><div class="role-col-header">🔁 LO QUE HACE HERNÁN</div><ul><li>Crear y publicar la demo</li><li>Diseño y desarrollo</li><li>SEO, bots y automatizaciones</li><li>Soporte técnico post-venta</li><li>Facturación y contratos</li><li>Gestión de hospedaje</li></ul></div>
+    </div>
+    <div class="info-box"><div class="box-title">💸 Tu comisión</div><ul><li><li>A mayor plan, mayor comisión — los planes de automatización son los más rentables</li><li>Tu comisión es del <strong>20%</strong> de cada cierre</li></ul></div>
+    <div class="foot-nav"><button class="foot-btn" onclick="goTo(0)">← Anterior</button><button class="foot-btn teal" onclick="goTo(2)">Siguiente →</button></div>
+  </div>
+
+  <!-- 03 LOS 4 PLANES -->
+  <div class="section" id="s2">
+    <div class="section-header"><div class="section-num violet">03</div><div class="section-title">Los 4 Planes ⭐</div></div>
+
+    <div class="strategy-box">
+      <div class="strategy-title">🧠 La estrategia detrás de los precios</div>
+      <div class="strategy-items">
+        <div class="strategy-item"><div class="s-label">Anclaje (McDonald's)</div><p>El plan Total hace que el Avanzado parezca razonable — igual que el menú grande hace al mediano "la opción lógica".</p></div>
+        <div class="strategy-item"><div class="s-label">Efecto señuelo</div><p>El Plan Básico empuja hacia Estándar. El Avanzado empuja hacia Total. Cada plan vende al siguiente.</p></div>
+        <div class="strategy-item"><div class="s-label">"Más popular" (Netflix)</div><p>Siempre destacar Estándar como el más elegido — activa el instinto de seguir a la mayoría.</p></div>
+        <div class="strategy-item"><div class="s-label">Setup separado (Apple)</div><p>Cobrar setup por separado hace la mensualidad parecer más baja psicológicamente.</p></div>
+      </div>
+    </div>
+
+    <div class="plans-grid">
+      <!-- Plan 1 -->
+      <div class="plan-card p1">
+        <div class="plan-header"><div class="plan-name">🌱 Básico</div><div class="plan-sub">La puerta de entrada</div></div>
+        <div class="plan-price"><div class="setup">Pago único · sin mensualidad</div><div class="monthly">149 €<span> (único)</span></div></div>
+        <div class="plan-for">Para: negocios sin presupuesto inicial</div>
+        <div class="plan-features"><ul><li>Página web diseñada</li><li>Publicación básica</li><li>Sin hospedaje incluido</li><li>Sin mantención</li><li>Objetivo: subir a Estándar</li></ul></div>
+      </div>
+      <!-- Plan 2 -->
+      <div class="plan-card p2 popular">
+        <div class="plan-header"><div class="plan-badge">★ MÁS POPULAR</div><div class="plan-name">🌐 Estándar</div><div class="plan-sub">La base completa</div></div>
+        <div class="plan-price"><div class="setup">Sin setup</div><div class="monthly">199 €<span>/mes</span></div></div>
+        <div class="plan-for">Para: negocios que quieren presencia real</div>
+        <div class="plan-features"><ul><li>Página web profesional</li><li>Hospedaje + dominio incluido</li><li>SEO básico (apareces en Google)</li><li>Mantención mensual</li><li>1 revisión de contenido/mes</li></ul></div>
+      </div>
+      <!-- Plan 3 -->
+      <div class="plan-card p3">
+        <div class="plan-header"><div class="plan-name">⚡ Avanzado</div><div class="plan-sub">Web + automatización</div></div>
+        <div class="plan-price"><div class="setup">Setup: 200–400 € (único)</div><div class="monthly">249 €<span>/mes</span></div></div>
+        <div class="plan-for">Para: negocios con volumen de clientes</div>
+        <div class="plan-features"><ul><li>Todo lo de Estándar</li><li>1 flujo de automatización (n8n/Make)</li><li>Reservas, leads, recordatorios</li><li>Chatbot web o WhatsApp (opcional)</li><li>Reportes mensuales</li><li>Mantención mensual (49 €/mes)</li>
+<li>Mantención de automatizaciones</li></ul></div>
+      </div>
+      <!-- Plan 4 -->
+      <div class="plan-card p4">
+        <div class="plan-header"><div class="plan-badge">◆ MÁX. POTENCIA</div><div class="plan-name">🤖 Premium</div><div class="plan-sub">El ecosistema completo</div></div>
+        <div class="plan-price"><div class="setup">Setup: 400–600 € (único)</div><div class="monthly">4199 €<span>/mes</span></div></div>
+        <div class="plan-for">Para: líderes del sector que quieren escalar</div>
+        <div class="plan-features"><ul><li>Todo lo de Avanzado</li><li>Agente IA personalizado</li><li>Múltiples automatizaciones</li><li>Chatbot WhatsApp + web incluidos</li><li>Integración CRM + pagos online</li><li>Soporte prioritario 24h</li></ul></div>
+      </div>
+    </div>
+
+    <div class="card-title" style="padding:4px 0 12px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--violet)">📊 Comparativa rápida</div>
+    <table class="tbl">
+      <thead><tr><th>Servicio</th><th style="background:var(--c1)">Básico</th><th style="background:var(--c2)">Estándar ★</th><th style="background:var(--c3)">Avanzado</th><th style="background:var(--c4)">Total</th></tr></thead>
+      <tbody>
+        <tr><td>Página web</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Hospedaje + dominio</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>SEO básico</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Mantención mensual</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Automatizaciones</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Chatbot / Bot WhatsApp</td><td class="no">—</td><td class="no">—</td><td class="opt">Opcional</td><td class="yes">✓</td></tr>
+        <tr><td>Agente IA</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td>Soporte prioritario</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+        <tr><td><strong>Precio/mes</strong></td><td><strong>249 € único</strong></td><td><strong>199 €/mes</strong></td><td><strong>149 €/mes</strong></td><td><strong>5199 €/mes</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box violet"><div class="box-title">🎯 Cómo presentar los planes</div><ul>
+      <li>Nunca en el primer mensaje — solo cuando hay interés real</li>
+      <li>Siempre empieza por el Plan Total (ancla) y baja hacia Estándar</li>
+      <li>Destaca siempre que Estándar es "el más elegido"</li>
+      <li>Si dudan, ofrece Básico como prueba sin riesgo</li>
+    </ul></div>
+
+    <div class="foot-nav"><button class="foot-btn" onclick="goTo(1)">← Anterior</button><button class="foot-btn teal" onclick="goTo(3)">Siguiente →</button></div>
+  </div>
+
+  <!-- 04 PROSPECTOS -->
+  <div class="section" id="s3">
+    <div class="section-header"><div class="section-num">04</div><div class="section-title">Cómo identificar prospectos</div></div>
+    <div class="card-title" style="padding:4px 0 10px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--teal-d)">Rubros y plan objetivo</div>
+    <table class="tbl">
+      <thead><tr><th>Rubro</th><th>Plan objetivo</th><th>Por qué</th></tr></thead>
+      <tbody>
+        <tr><td>Gimnasios / CrossFit</td><td><span class="tag violet">Avanzado</span></td><td>Reservas, recordatorios, turnos</td></tr>
+        <tr><td>Clínicas dentales</td><td><span class="tag violet">Avanzado / Total</span></td><td>Citas, recordatorios, seguimiento</td></tr>
+        <tr><td>Cafeterías especialidad</td><td><span class="tag">Estándar</span></td><td>Presencia, horarios, redes</td></tr>
+        <tr><td>Fotógrafos / Creativos</td><td><span class="tag">Estándar</span></td><td>Portfolio, formulario contacto</td></tr>
+        <tr><td>Restaurantes premium</td><td><span class="tag violet">Avanzado</span></td><td>Reservas online, carta digital</td></tr>
+        <tr><td>Psicólogos / Coaches</td><td><span class="tag">Estándar / Avanzado</span></td><td>Agenda, formularios, recordatorios</td></tr>
+        <tr><td>Academias de idiomas</td><td><span class="tag violet">Total</span></td><td>Matrículas, bots, seguimiento</td></tr>
+        <tr><td>Tiendas / Boutiques</td><td><span class="tag violet">Total</span></td><td>Tienda online, pagos, automatización</td></tr>
+      </tbody>
+    </table>
+    <div class="card-title" style="padding:4px 0 10px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--teal-d)">🔍 Señales de buen prospecto</div>
+    <ul class="blist">
+      <li>Instagram activo pero <strong>sin link de web</strong> en el perfil</li>
+      <li>En Google Maps pero <strong>sin sitio web propio</strong></li>
+      <li>Web desactualizada o con mal aspecto en móvil</li>
+      <li>Alto volumen de reservas manuales → candidato Avanzado</li>
+      <li>Más de 3 empleados → candidato Total</li>
+    </ul>
+    <div class="foot-nav"><button class="foot-btn" onclick="goTo(2)">← Anterior</button><button class="foot-btn teal" onclick="goTo(4)">Siguiente →</button></div>
+  </div>
+
+  <!-- 05 CONTACTO -->
+  <div class="section" id="s4">
+    <div class="section-header"><div class="section-num">05</div><div class="section-title">El primer contacto</div></div>
+    <ul class="blist"><li>❌ Nunca precios en el primer mensaje</li><li>✅ Siempre el link de la demo</li><li>✅ Framing: "campaña curada", "grupo seleccionado"</li><li>✅ Hora ideal: 9:00–9:30 AM o 18:30–19:00</li><li>✅ En España: usa <strong>vosotros</strong>, no ustedes</li></ul>
+    <div class="msg-box" id="msg-first">¡Hola! Soy Dani, trabajo con una aceleradora web freelance y seleccionamos un grupo pequeño de [tipo de negocio] en [ciudad] para ofrecerles una página web profesional completamente gratis.
+
+[Nombre del negocio] fue uno de los elegidos. Ya preparamos cómo quedaría vuestra página:
+👉 [URL de la demo]
+
+Es totalmente ajustable. ¿Le dais un vistazo y me contáis qué os parece? 😊
+      <button class="copy-btn" onclick="copyMsg('msg-first',this)">Copiar</button></div>
+    <div class="foot-nav"><button class="foot-btn" onclick="goTo(3)">← Anterior</button><button class="foot-btn teal" onclick="goTo(5)">Siguiente →</button></div>
+  </div>
+
+  <!-- 06 RESPUESTAS -->
+  <div class="section" id="s5">
+    <div class="section-header"><div class="section-num">06</div><div class="section-title">Manejo de respuestas</div></div>
+    <div class="qa-item"><button class="qa-question" onclick="toggleQa(this)"><span>💬 "¿Cuánto cuesta?"</span><span class="qa-arrow">▶</span></button><div class="qa-answer"><div class="msg-box" id="qa1" style="border-radius:0;border:none;border-left:5px solid var(--teal)">El diseño es gratuito. Lo que tiene coste es el hospedaje y dominio — necesarios para mantenerla publicada.
+
+Si me dejáis un correo os mando toda la info con los planes detallados. 😊<button class="copy-btn" onclick="copyMsg('qa1',this)">Copiar</button></div></div></div>
+
+    <div class="qa-item"><button class="qa-question" onclick="toggleQa(this)"><span>💬 "¿Qué incluye exactamente?"</span><span class="qa-arrow">▶</span></button><div class="qa-answer"><div class="msg-box" id="qa2" style="border-radius:0;border:none;border-left:5px solid var(--teal)">Tenemos varios planes según lo que necesitéis — desde solo la web hasta automatizaciones con inteligencia artificial.
+
+¿Me contáis cómo funciona vuestro negocio? Así os digo cuál encaja mejor. 😊<button class="copy-btn" onclick="copyMsg('qa2',this)">Copiar</button></div></div></div>
+
+    <div class="qa-item"><button class="qa-question" onclick="toggleQa(this)"><span>💬 "Déjame pensarlo"</span><span class="qa-arrow">▶</span></button><div class="qa-answer"><div class="msg-box" id="qa3" style="border-radius:0;border:none;border-left:5px solid var(--teal)">¡Sin problema! La demo caduca pronto — si no os encaja me lo decís y la doy de baja sin compromiso. 😊<button class="copy-btn" onclick="copyMsg('qa3',this)">Copiar</button></div></div></div>
+
+    <div class="qa-item"><button class="qa-question" onclick="toggleQa(this)"><span>💬 "No me interesa"</span><span class="qa-arrow">▶</span></button><div class="qa-answer"><div class="msg-box" id="qa4" style="border-radius:0;border:none;border-left:5px solid var(--teal)">¡Entendido! Si alguna vez necesitáis mejorar vuestra presencia online, aquí estoy. ¡Mucho éxito! 🙌<button class="copy-btn" onclick="copyMsg('qa4',this)">Copiar</button></div></div></div>
+
+    <div style="padding:4px 0 10px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--teal-d);margin-top:12px">Seguimiento (3–5 días sin respuesta)</div>
+    <div class="msg-box" id="qa5">¡Hola! Solo un seguimiento rápido. 😊 La demo de vuestra página está por caducar. ¿Queréis que la dejemos activa o lo dejamos para otro momento?<button class="copy-btn" onclick="copyMsg('qa5',this)">Copiar</button></div>
+    <div class="foot-nav"><button class="foot-btn" onclick="goTo(4)">← Anterior</button><button class="foot-btn teal" onclick="goTo(6)">Siguiente →</button></div>
+  </div>
+
+  <!-- 07 AL CERRAR -->
+  <div class="section" id="s6">
+    <div class="section-header"><div class="section-num">07</div><div class="section-title">Qué pasa cuando cierran</div></div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Confirmar el plan elegido</h4><p>Asegúrate de que quedó claro qué plan tomaron.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Pedir el correo del cliente</h4><p>Necesario para la propuesta formal y crear su cuenta.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Avisarme por WhatsApp</h4><p>Nombre, rubro, plan elegido y correo. Con eso arranco.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Hernán envía propuesta formal</h4><p>Precios, contrato simple y timeline de entrega.</p></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><h4>Cobro y activación</h4><p>Una vez que pagan, arrancamos. Plazo: ~3 semanas web.</p></div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-content"><h4>Upsell (mes 2–3)</h4><p>Si están en Estándar, a los 2 meses ofrece el Plan Avanzado. Frase: "vuestra web tiene buen tráfico — ¿han pensado en automatizar reservas?"</p></div></div>
+    </div>
+    <div class="info-box violet"><div class="box-title">📈 El upsell inteligente — como McDonald's</div><ul><li>Mes 1–2: cliente entra por Estándar</li><li>Mes 3: propones automatizar reservas o leads → Avanzado</li><li>Mes 5+: agente IA y chatbot → Total</li><li>El ingreso mensual se multiplica sin conseguir clientes nuevos</li></ul></div>
+    <div class="foot-nav"><button class="foot-btn" onclick="goTo(5)">← Anterior</button><button class="foot-btn teal" onclick="goTo(7)">Siguiente →</button></div>
+  </div>
+
+  <!-- 08 MENSAJES -->
+  <div class="section" id="s7">
+    <div class="section-header"><div class="section-num">08</div><div class="section-title">Mensajes listos</div></div>
+    <p style="color:var(--slate);font-size:13.5px;margin-bottom:18px">Copia, personaliza y envía. 🚀</p>
+
+    <div style="font-family:'Syne',sans-serif;font-size:13.5px;font-weight:700;color:var(--teal-d);padding:4px 0 10px">1. Primer contacto</div>
+    <div class="msg-box" id="m1">¡Hola! Soy Dani, trabajo con una aceleradora web freelance y seleccionamos un grupo pequeño de [tipo de negocio] en [ciudad] para ofrecerles una página web profesional completamente gratis.
+
+[Nombre] fue uno de los elegidos: 👉 [URL demo]
+
+¿Le dais un vistazo y me contáis qué os parece? 😊<button class="copy-btn" onclick="copyMsg('m1',this)">Copiar</button></div>
+
+    <div style="font-family:'Syne',sans-serif;font-size:13.5px;font-weight:700;color:var(--teal-d);padding:12px 0 10px">2. Presentar los 4 planes</div>
+    <div class="msg-box" id="m2">¡Buenas! Os preparo la info. Tenemos 4 planes según lo que necesitéis:
+
+🔷 PREMIUM (5199 €/mes): ecosistema digital completo con agente IA.
+⚡ AVANZADO (149 €/mes): web + automatizaciones + reportes.
+🌐 ESTÁNDAR (199 €/mes): web completa + SEO + mantención. ← El más elegido
+🚪 BÁSICO (149 €, pago único): sin mensualidad.
+
+La mayoría de negocios como el vuestro empiezan con Estándar.
+¿Os lo explico con más detalle? 😊<button class="copy-btn" onclick="copyMsg('m2',this)">Copiar</button></div>
+
+    <div style="font-family:'Syne',sans-serif;font-size:13.5px;font-weight:700;color:var(--teal-d);padding:12px 0 10px">3. Seguimiento</div>
+    <div class="msg-box" id="m3">¡Hola! Solo un seguimiento rápido. 😊 La demo está por caducar. ¿La dejamos activa o lo dejamos para otro momento?<button class="copy-btn" onclick="copyMsg('m3',this)">Copiar</button></div>
+
+    <div style="font-family:'Syne',sans-serif;font-size:13.5px;font-weight:700;color:var(--teal-d);padding:12px 0 10px">4. Cuando dicen que sí</div>
+    <div class="msg-box" id="m4">¡Perfecto, me alegra mucho! Vamos a ponernos en marcha.
+¿Me podéis dar vuestro correo para enviaros la propuesta formal? 😊<button class="copy-btn" onclick="copyMsg('m4',this)">Copiar</button></div>
+
+    <div style="font-family:'Syne',sans-serif;font-size:13.5px;font-weight:700;color:var(--violet);padding:12px 0 10px">5. Upsell (mes 2–3 en Estándar)</div>
+    <div class="msg-box" id="m5" style="border-color:var(--violet);background:var(--violet-l)">¡Hola! Vuestra web lleva ya un par de meses funcionando y tiene buen tráfico. 📊
+
+¿Habéis pensado en automatizar las reservas o los mensajes de WhatsApp? Tenemos un plan que lo hace todo por vosotros mientras dormís. ¿Os cuento cómo funciona?<button class="copy-btn" onclick="copyMsg('m5',this)">Copiar</button></div>
+
+    <div class="foot-nav"><button class="foot-btn" onclick="goTo(6)">← Anterior</button><button class="foot-btn teal" onclick="goTo(8)">Siguiente →</button></div>
+  </div>
+
+  <!-- 09 ERRORES -->
+  <div class="section" id="s8">
+    <div class="section-header"><div class="section-num">09</div><div class="section-title">Errores que evitar</div></div>
+    <div class="error-item"><div class="err-title">❌ Dar precios antes de que vean la demo</div><p>Mata el interés instantáneamente. Primero enamora, luego precio.</p></div>
+    <div class="error-item"><div class="err-title">❌ Presentar los planes de menor a mayor</div><p>Siempre empieza por el Total (ancla). Hace que el Estándar parezca una ganga.</p></div>
+    <div class="error-item"><div class="err-title">❌ Decir "somos baratos"</div><p>No somos baratos — somos accesibles y estratégicos. El precio refleja valor.</p></div>
+    <div class="error-item"><div class="err-title">❌ Prometer automatizaciones sin confirmarme</div><p>Si piden algo especial, escríbeme antes. Mejor prometer menos y dar más.</p></div>
+    <div class="error-item"><div class="err-title">❌ Presionar más de 2 veces</div><p>Máximo 2 seguimientos. El tercero ahuyenta.</p></div>
+    <div class="error-item"><div class="err-title">❌ No avisarme cuando cierran</div><p>Avísame de inmediato — la rapidez del arranque genera confianza en el cliente.</p></div>
+    <div class="error-item"><div class="err-title">❌ Solo mostrar Estándar desde el inicio</div><p>Muestra siempre los 4 planes — la comparación hace el trabajo de venta por ti.</p></div>
+    <div class="info-box" style="margin-top:24px"><div class="box-title">🚀 Recuerda siempre</div><ul><li>Para dudas técnicas, escríbeme — no adivines</li><li>Los planes se venden solos si los presentas en el orden correcto</li><li>Tu valor está en el contacto humano y la confianza local</li><li>¡A por ello, Dani! 💪</li></ul></div>
+    <div class="foot-nav"><button class="foot-btn" onclick="goTo(7)">← Anterior</button><button class="foot-btn" disabled style="background:var(--teal);opacity:1;cursor:default">✓ Completado</button></div>
+  </div>
+
+</div>
+
+<script>
+let cur=0; const total=9;
+function goTo(n){
+  document.getElementById('s'+cur).classList.remove('active');
+  document.querySelectorAll('.nav-btn')[cur].classList.remove('active');
+  cur=n;
+  document.getElementById('s'+cur).classList.add('active');
+  document.querySelectorAll('.nav-btn')[cur].classList.add('active');
+  document.getElementById('progress').style.width=((cur+1)/total*100)+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleQa(btn){btn.classList.toggle('open');btn.nextElementSibling.classList.toggle('open')}
+function copyMsg(id,btn){
+  const el=document.getElementById(id);
+  const clone=el.cloneNode(true);
+  clone.querySelectorAll('button').forEach(b=>b.remove());
+  navigator.clipboard.writeText(clone.innerText.trim()).then(()=>{
+    btn.textContent='✓ Copiado';btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copiar';btn.classList.remove('copied')},2000);
+  });
+}
+</script>
+</body>
+</html>
